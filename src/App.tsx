@@ -1,6 +1,6 @@
 import './App.css'
 import { atom, useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 type Player = {
   x: number;
@@ -12,10 +12,18 @@ type Neighbour = {
   tile: Tile;
 }
 
+enum TerrainType {
+  Wall = "wall",
+  Grass = "grass",
+  Water = "water",
+  Wasteland = "wasteland",
+}
+
 type Tile = {
   x: number;
   y: number;
-  terrain: "grass" | "water" | "empty";
+  terrain: TerrainType;
+  terrainSubType: number;
   neighbours: Neighbour[];
 }
 
@@ -80,9 +88,28 @@ function addTile(world: Map<string, Tile>, tile: Tile) {
 function createWorld() {
   let world: Map<string, Tile> = new Map<string, Tile>();
 
-  for (let x = -5; x < 105; x++) {
-    for (let y = -5; y < 105; y++) {
-      world = addTile(world, { x, y, terrain: "grass", neighbours: [] })
+  for (let y = -5; y < 105; y++) {
+    for (let x = -5; x < 105; x++) {
+      let terrainType: TerrainType = TerrainType.Grass;
+      let terrainSubType: number = 0;
+
+      if (x < 0 || x > 99 || y < 0 || y > 99) {
+        terrainType = TerrainType.Wall;
+        terrainSubType = Math.floor(Math.random() * 3);
+      }
+      else {
+        const landOrWater = Math.random() > 0.3 ? "land" : "water";
+
+        if (landOrWater === "land") {
+          terrainType = Math.random() > 0.7 ? TerrainType.Grass : TerrainType.Wasteland;
+          terrainSubType = Math.floor(Math.random() * 3);
+        }
+        else {
+          terrainType = TerrainType.Water;
+        }
+      }
+
+      world = addTile(world, { x, y, terrain: terrainType, terrainSubType, neighbours: [] })
     }
   }
 
@@ -115,6 +142,7 @@ const cameraAtom = atom<Map<string, Tile>>(
 );
 
 function App() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [camera] = useAtom(cameraAtom);
   const [player, setPlayer] = useAtom(playerAtom);
 
@@ -144,24 +172,41 @@ function App() {
       }
     }
 
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d");
+
+    if (context) {
+      Array.from(world.values()).map((tile) => {
+        context.fillStyle = tile.terrain === TerrainType.Water ? "blue" : "green";
+        context.fillRect(tile.x, tile.y, 1, 1);
+      });
+
+      context.fillStyle = "red";
+      context.fillRect(player.x, player.y, 5, 5);
+    }
+
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     }
-  });
+  })
 
   return (
-    <div className="camera">
-      {Array.from(camera.values()).map((tile) => {
-        return (
-          <div className="tile" key={`${tile.x},${tile.y}`}>
-            {tile.x === player.x && tile.y === player.y ? "👨‍🌾" : ""}
-            {tile.x},{tile.y}
-          </div>
-        )
-      })}
-    </div >
+    <div className="game">
+      <div className="camera">
+        {Array.from(camera.values()).map((tile) => {
+          return (
+            <div className={`tile ${tile.terrain}${tile.terrainSubType}`} key={`${tile.x},${tile.y}`}>
+              {tile.x === player.x && tile.y === player.y ? <div className="player"></div> : ""}
+            </div>
+          )
+        })}
+      </div >
+      <div className="minimap">
+        <canvas ref={canvasRef} width="100" height="100"></canvas>
+      </div>
+    </div>
   )
 }
 
