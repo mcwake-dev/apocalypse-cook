@@ -63,3 +63,20 @@
         background-size: cover;
     }
 }
+
+.settlement {
+    &.a {
+        background: url("./Tiles/settlement0.png") no-repeat;
+        background-size: cover;
+    }
+
+    &.b {
+        background: url("./Tiles/settlement1.png") no-repeat;
+        background-size: cover;
+    }
+
+    &.c {
+        background: url("./Tiles/settlement2.png") no-repeat;
+        background-size: cover;
+    }
+}

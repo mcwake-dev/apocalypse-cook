@@ -3,6 +3,7 @@ import './App.css'
 import Minimap from './components/Minimap';
 import Camera from "./components/Camera";
 import Instructions from './components/Instructions';
+import SettlementDisplay from './components/SettlementDisplay';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Camera />
       <Minimap />
       <Instructions />
+      <SettlementDisplay />
     </div>
   )
 }

@@ -17,7 +17,19 @@ function Minimap() {
 
         if (context) {
             Array.from(world.values()).map((tile) => {
-                context.fillStyle = tile.terrain === TerrainType.Water ? "blue" : "green";
+                switch (tile.terrain) {
+                    case TerrainType.Water:
+                        context.fillStyle = "blue";
+                        break;
+                    case TerrainType.Grass:
+                        context.fillStyle = "green";
+                        break;
+                    case TerrainType.Wasteland:
+                        context.fillStyle = "#eaa56c";
+                        break;
+                    case TerrainType.Settlement:
+                        context.fillStyle = "black";
+                }
                 context.fillRect(tile.x, tile.y, 1, 1);
             });
 
