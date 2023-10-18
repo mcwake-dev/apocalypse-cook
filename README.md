@@ -2,6 +2,7 @@
 
 A very much WIP project to build a HTML, CSS and React-based game to demonstrate my abilities with these technologies in a way that's a lot more interesting for a recruiter to look at that yet another Todo app or something written by ChatGPT.
 
+Live Version: [Apocalypse Cook on Vercel](https://apocalypse-cook-mcwake-dev.vercel.app/)
 ## Setting
 In the game, you will travel around local settlements in the post-apocalyptic wasteland, trading ingredients and cooking tasty meals for the inhabitants. As the inhabitants become healthier, the wasteland will be healed and new ingredients will be made available.
 
