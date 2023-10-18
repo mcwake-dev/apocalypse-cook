@@ -7,7 +7,7 @@
 .player {
     position: absolute;
     margin: 0;
-    background: url("./Tiles/player.png");
+    background: url("/Tiles/player.png");
     height: 40px;
     width: 40px;
     background-size: cover;
