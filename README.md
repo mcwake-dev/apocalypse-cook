@@ -30,3 +30,5 @@ Presently this is purely a client-side application with no ability to save and n
 * HTML5
 * CSS3
 * TypeScript
+* React
+* Jotai
