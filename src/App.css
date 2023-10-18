@@ -35,6 +35,13 @@
   top: 0;
 }
 
+.instructions {
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .minitile {
   border: 0;
   width: 2px;

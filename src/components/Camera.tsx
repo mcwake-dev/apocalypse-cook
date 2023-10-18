@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 
-import { playerAtom } from './atoms/player';
-import { cameraAtom } from './atoms/camera';
+import { playerAtom } from '../atoms/player';
+import { cameraAtom } from '../atoms/camera';
 import PlayerDisplay from './PlayerDisplay';
 
 function Camera() {

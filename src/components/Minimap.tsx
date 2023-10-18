@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useAtom } from 'jotai';
 
-import { playerAtom } from './atoms/player';
-import { worldAtom } from './atoms/world';
-import { TerrainType } from './types/terrainType';
+import { playerAtom } from '../atoms/player';
+import { worldAtom } from '../atoms/world';
+import { TerrainType } from '../types/terrainType';
 
 function Minimap() {
     const canvasRef = useRef<HTMLCanvasElement>(null);

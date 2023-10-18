@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
 
-import { playerAtom } from './atoms/player';
+import { playerAtom } from '../atoms/player';
 
 function PlayerDisplay() {
     const [player, setPlayer] = useAtom(playerAtom);
