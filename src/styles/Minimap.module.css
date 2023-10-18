@@ -1,0 +1,14 @@
+.minimap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.minimap canvas {
+    position: absolute;
+    right: 0;
+    margin: 5px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.88);
+}

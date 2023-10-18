@@ -1,0 +1,65 @@
+.tile {
+    width: 70px;
+    height: 70px;
+    border: 1px solid black;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.grass {
+    &.a {
+        background: url("./Tiles/grass0.png") no-repeat;
+        background-size: cover;
+    }
+
+    &.b {
+        background: url("./Tiles/grass1.png") no-repeat;
+        background-size: cover;
+    }
+
+    &.c {
+        background: url("./Tiles/grass2.png") no-repeat;
+        background-size: cover;
+    }
+}
+
+.wall {
+    &.a {
+        background: url("./Tiles/wall0.png") no-repeat;
+        background-size: cover;
+    }
+
+    &.b {
+        background: url("./Tiles/wall1.png") no-repeat;
+        background-size: cover;
+    }
+
+    &.c {
+        background: url("./Tiles/wall2.png") no-repeat;
+        background-size: cover;
+    }
+}
+
+.water {
+    &.a {
+        background: url("./Tiles/water0.png") no-repeat;
+        background-size: cover;
+    }
+}
+
+.wasteland {
+    &.a {
+        background: url("./Tiles/wasteland0.png") no-repeat;
+        background-size: cover;
+    }
+
+    &.b {
+        background: url("./Tiles/wasteland1.png") no-repeat;
+        background-size: cover;
+    }
+
+    &.c {
+        background: url("./Tiles/wasteland2.png") no-repeat;
+        background-size: cover;
+    }
+}

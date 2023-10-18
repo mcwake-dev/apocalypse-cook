@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useAtom } from 'jotai';
 
 import { playerAtom } from '../atoms/player';
+import classes from "../styles/PlayerDisplay.module.css";
 
 function PlayerDisplay() {
     const [player, setPlayer] = useAtom(playerAtom);
@@ -39,7 +40,11 @@ function PlayerDisplay() {
         }
     })
 
-    return <div className="player"></div>;
+    return (
+        <div className={classes.playerContainer}>
+            <div className={`${classes.player} ${classes.bounce}`}></div>
+        </div>
+    );
 }
 
 export default PlayerDisplay;

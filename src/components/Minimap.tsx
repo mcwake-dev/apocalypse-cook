@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import { playerAtom } from '../atoms/player';
 import { worldAtom } from '../atoms/world';
 import { TerrainType } from '../types/terrainType';
+import classes from "../styles/Minimap.module.css";
 
 function Minimap() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -26,7 +27,7 @@ function Minimap() {
     })
 
     return (
-        <div className="minimap" >
+        <div className={classes.minimap}>
             <canvas ref={canvasRef} width="100" height="100"></canvas>
         </div>
     )
