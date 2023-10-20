@@ -3,15 +3,21 @@ import { Tile } from "../types/tile";
 import { settlementNames } from "../data/settlementNames";
 
 function randomSettlementName(world: Map<string, Tile>): string {
-    const currentSettlements = Array.from(world.values()).filter(tile => tile.settlement).map(tile => tile.settlement?.name);
+    const settlements = Array.from(world.values()).filter((tile: Tile) => tile.settlement);
+    const currentSettlementNames = settlements.map((tile: Tile) => tile.settlement?.name);
+    const availableSettlementNames = settlementNames.filter(name => !currentSettlementNames.includes(name));
+    const randomAvailableSettlementName = availableSettlementNames[Math.floor(Math.random() * availableSettlementNames.length)];
 
-    return settlementNames.filter(name => !currentSettlements.includes(name))[Math.floor(Math.random() * settlementNames.length)];
+    return randomAvailableSettlementName!;
 }
 
 function addRandomSettlement(world: Map<string, Tile>): Map<string, Tile> {
     const newWorld = new Map<string, Tile>(world);
     const centreX = Math.floor(Math.random() * 100);
     const centreY = Math.floor(Math.random() * 100);
+    const newSettlementName = randomSettlementName(newWorld);
+
+    console.log(newSettlementName);
 
     newWorld.set(`${centreX},${centreY}`, {
         x: centreX,
@@ -19,7 +25,7 @@ function addRandomSettlement(world: Map<string, Tile>): Map<string, Tile> {
         terrain: TerrainType.Settlement,
         terrainSubType: Math.floor(Math.random() * 3),
         settlement: {
-            name: randomSettlementName(newWorld),
+            name: newSettlementName,
         }
     });
 
