@@ -2,6 +2,7 @@ import { TerrainType } from "../types/terrainType";
 import { Tile } from "../types/tile";
 import { createBase } from "./base";
 import { addRandomSettlements } from "./settlement";
+import { createTileOfType } from "./tile";
 
 function createWasteland(): Map<string, Tile> {
     const newWorld: Map<string, Tile> = new Map<string, Tile>();
@@ -14,12 +15,7 @@ function createWasteland(): Map<string, Tile> {
                 terrainType = TerrainType.Wall;
             }
 
-            newWorld.set(`${x},${y}`, {
-                x,
-                y,
-                terrain: terrainType,
-                terrainSubType: Math.floor(Math.random() * 3),
-            });
+            newWorld.set(`${x},${y}`, createTileOfType(x, y, terrainType));
         }
     }
 

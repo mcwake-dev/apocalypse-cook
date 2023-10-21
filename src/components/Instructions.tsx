@@ -9,7 +9,7 @@ function Instructions() {
     }
 
     return (
-        <dialog ref={dialogRef} className={classes.instructions} open>
+        <dialog ref={dialogRef} className={classes.instructions}>
             <p>Use the Arrow keys to move the player around</p>
             <button autoFocus onClick={() => close()}>Close</button>
         </dialog>
