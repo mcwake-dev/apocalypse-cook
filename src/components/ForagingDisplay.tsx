@@ -1,6 +1,5 @@
 import { useRef, useEffect } from "react";
 import { useAtom } from "jotai";
-import { Howl } from "howler";
 
 import classes from "../styles/ForagingDisplay.module.css";
 import { worldAtom } from "../atoms/world";
@@ -8,10 +7,7 @@ import { playerAtom } from "../atoms/player";
 import { cameraAtom } from "../atoms/camera";
 import { Tile } from "../types/tile";
 import { ItemType } from "../types/item";
-
-const forageSound = new Howl({
-    src: ["/Sounds/forage.ogg"],
-});
+import { Activity } from "../types/player";
 
 export default function ForagingDisplay() {
     const dialogRef = useRef<HTMLDialogElement>(null);
@@ -23,28 +19,35 @@ export default function ForagingDisplay() {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            console.log("f");
             switch (e.key) {
                 case "f":
                     if (currentTile?.forageable && !currentTile?.foragedToday) {
-                        forageSound.play();
-
                         setPlayer((prev) => {
                             return {
                                 ...prev,
-                                inventory: [...prev.inventory, { itemType: ItemType.carrot, quantity: 1 }]
+                                inventory: [...prev.inventory, { itemType: ItemType.carrot, quantity: 1 }],
+                                activity: Activity.Foraging
                             };
                         });
-                        setWorld((prev) => {
-                            const newWorld = new Map<string, Tile>(prev);
-                            const currentTile = newWorld.get(`${player.x},${player.y}`);
 
-                            if (currentTile) {
-                                newWorld.set(`${player.x},${player.y}`, { ...currentTile, foragedToday: true });
-                            }
+                        setTimeout(function () {
+                            setWorld((prev) => {
+                                const newWorld = new Map<string, Tile>(prev);
+                                const currentTile = newWorld.get(`${player.x},${player.y}`);
 
-                            return newWorld;
-                        });
+                                if (currentTile) {
+                                    newWorld.set(`${player.x},${player.y}`, { ...currentTile, foragedToday: true });
+                                }
+
+                                return newWorld;
+                            });
+                            setPlayer((prev) => {
+                                return {
+                                    ...prev,
+                                    activity: Activity.Stopped
+                                };
+                            })
+                        }, 600);
                     }
                     break;
             }
