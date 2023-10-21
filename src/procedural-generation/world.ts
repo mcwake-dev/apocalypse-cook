@@ -17,8 +17,6 @@ function addRandomSettlement(world: Map<string, Tile>): Map<string, Tile> {
     const centreY = Math.floor(Math.random() * 100);
     const newSettlementName = randomSettlementName(newWorld);
 
-    console.log(newSettlementName);
-
     newWorld.set(`${centreX},${centreY}`, {
         x: centreX,
         y: centreY,
