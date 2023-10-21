@@ -33,3 +33,7 @@ Presently this is purely a client-side application with no ability to save and n
 * TypeScript
 * React
 * Jotai
+
+## Assets Used
+* Tiny Battle from [kenney.nl](https://kenney.nl/assets/tiny-battle)
+* Tiny Town from [kenney.nl](https://kenney.nl/assets/tiny-town)
