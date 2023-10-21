@@ -7,4 +7,6 @@ export type Tile = {
     terrain: TerrainType;
     terrainSubType: number;
     settlement?: Settlement;
+    forageable: boolean;
+    foragedToday?: boolean;
 }

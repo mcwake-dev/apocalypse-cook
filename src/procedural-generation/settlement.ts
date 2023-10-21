@@ -1,6 +1,6 @@
-import { TerrainType } from "../types/terrainType";
 import { Tile } from "../types/tile";
 import { settlementNames } from "../data/settlementNames";
+import { createSettlementTile } from "./tile";
 
 function randomSettlementName(world: Map<string, Tile>): string {
     const settlements = Array.from(world.values()).filter((tile: Tile) => tile.settlement);
@@ -17,15 +17,7 @@ function addRandomSettlement(world: Map<string, Tile>): Map<string, Tile> {
     const centreY = Math.floor(Math.random() * 100);
     const newSettlementName = randomSettlementName(newWorld);
 
-    newWorld.set(`${centreX},${centreY}`, {
-        x: centreX,
-        y: centreY,
-        terrain: TerrainType.Settlement,
-        terrainSubType: Math.floor(Math.random() * 3),
-        settlement: {
-            name: newSettlementName,
-        }
-    });
+    newWorld.set(`${centreX},${centreY}`, createSettlementTile(centreX, centreY, newSettlementName));
 
     return newWorld;
 }
