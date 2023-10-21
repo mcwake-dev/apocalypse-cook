@@ -3,5 +3,6 @@ export enum TerrainType {
     Grass = "grass",
     Water = "water",
     Wasteland = "wasteland",
-    Settlement = "settlement"
+    Settlement = "settlement",
+    Base = "base",
 }

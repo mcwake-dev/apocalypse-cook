@@ -4,6 +4,7 @@ import Minimap from './components/Minimap';
 import Camera from "./components/Camera";
 import Instructions from './components/Instructions';
 import SettlementDisplay from './components/SettlementDisplay';
+import BaseDisplay from './components/BaseDisplay';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Minimap />
       <Instructions />
       <SettlementDisplay />
+      <BaseDisplay />
     </div>
   )
 }

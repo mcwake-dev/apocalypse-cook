@@ -45,6 +45,16 @@
         background: url("/Tiles/water0.png") no-repeat;
         background-size: cover;
     }
+
+    &.b {
+        background: url("/Tiles/water0.png") no-repeat;
+        background-size: cover;
+    }
+
+    &.c {
+        background: url("/Tiles/water0.png") no-repeat;
+        background-size: cover;
+    }
 }
 
 .wasteland {
@@ -77,6 +87,13 @@
 
     &.c {
         background: url("/Tiles/settlement2.png") no-repeat;
+        background-size: cover;
+    }
+}
+
+.base {
+    &.a {
+        background: url("/Tiles/base0.png") no-repeat;
         background-size: cover;
     }
 }

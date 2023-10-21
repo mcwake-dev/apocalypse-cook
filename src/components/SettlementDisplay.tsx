@@ -12,8 +12,6 @@ export default function SettlementDisplay() {
     const [player] = useAtom(playerAtom);
     const currentTile = camera.get(`${player.x},${player.y}`);
 
-    console.log(currentTile);
-
     if (currentTile?.terrain === TerrainType.Settlement) {
         return (
             <dialog ref={dialogRef} className={classes.settlement} open>
