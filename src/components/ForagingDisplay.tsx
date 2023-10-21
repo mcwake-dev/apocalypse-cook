@@ -1,14 +1,17 @@
 import { useRef, useEffect } from "react";
 import { useAtom } from "jotai";
+import { Howl } from "howler";
 
 import classes from "../styles/ForagingDisplay.module.css";
 import { worldAtom } from "../atoms/world";
 import { playerAtom } from "../atoms/player";
 import { cameraAtom } from "../atoms/camera";
-import { TerrainType } from "../types/terrainType";
 import { Tile } from "../types/tile";
-import { preview } from "vite";
 import { ItemType } from "../types/item";
+
+const forageSound = new Howl({
+    src: ["/Sounds/forage.ogg"],
+});
 
 export default function ForagingDisplay() {
     const dialogRef = useRef<HTMLDialogElement>(null);
@@ -24,6 +27,8 @@ export default function ForagingDisplay() {
             switch (e.key) {
                 case "f":
                     if (currentTile?.forageable && !currentTile?.foragedToday) {
+                        forageSound.play();
+
                         setPlayer((prev) => {
                             return {
                                 ...prev,
