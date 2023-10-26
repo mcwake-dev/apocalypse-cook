@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 import { useAtom } from "jotai";
+import { Link } from "react-router-dom";
+
+import classes from "../styles/BaseDisplay.module.css";
 
 import { playerAtom } from "../atoms/player";
 import { baseAtom } from "../atoms/base";
@@ -41,10 +44,15 @@ export default function BaseDisplay() {
 
     if (base.x === player.x && base.y === player.y) {
         return (
-            <>
-                You have arrived <b>Home</b>
-                <p>Press <b>r</b> to rest</p>
-            </>
+            <div className={classes.baseDisplayContainer}>
+                <div>
+                    <p>You have arrived <b>Home</b></p>
+                    <p>Press <b>r</b> to rest</p>
+                </div>
+                <div>
+                    <Link to={`/cook`}><button>Cook</button></Link>
+                </div>
+            </div>
         );
     }
 
