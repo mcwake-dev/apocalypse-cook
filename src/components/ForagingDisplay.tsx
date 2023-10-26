@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { useAtom } from "jotai";
 
 import { worldAtom } from "../atoms/world";
@@ -9,7 +9,6 @@ import { ItemType } from "../types/item";
 import { Activity } from "../types/player";
 
 export default function ForagingDisplay() {
-    const dialogRef = useRef<HTMLDialogElement>(null);
     const [camera] = useAtom(cameraAtom);
     const [player, setPlayer] = useAtom(playerAtom);
     const [, setWorld] = useAtom(worldAtom);
