@@ -16,6 +16,13 @@ export default function ForagingDisplay() {
                 </>
             )
         }
+        if (player.inventory.length === 10) {
+            return (
+                <>
+                    Your inventory is full
+                </>
+            )
+        }
         if (currentTile?.foragedToday === true) {
             return (
                 <>

@@ -12,6 +12,9 @@ import { ItemType } from '../types/item';
 const forageSound = new Howl({
     src: ["/Sounds/forage.ogg"],
 });
+const fullInventorySound = new Howl({
+    src: ["/Sounds/inventory_full.ogg"],
+});
 
 function PlayerDisplay() {
     const [player, setPlayer] = useAtom(playerAtom);
@@ -52,34 +55,38 @@ function PlayerDisplay() {
                         player.energy > 0 &&
                         player.activity !== Activity.Foraging
                     ) {
-                        forageSound.play();
-                        setPlayer((prev) => {
-                            return {
-                                ...prev,
-                                activity: Activity.Foraging,
-                                energy: prev.energy - 1
-                            };
-                        });
-                        setWorld((prev) => {
-                            const newWorld = new Map<string, Tile>(prev);
-                            const currentTile = newWorld.get(`${player.x},${player.y}`);
-
-                            if (currentTile) {
-                                newWorld.set(`${player.x},${player.y}`, { ...currentTile, foragedToday: true });
-                            }
-
-                            return newWorld;
-                        });
-
-                        setTimeout(function () {
+                        if (player.inventory.length < 10) {
+                            forageSound.play();
                             setPlayer((prev) => {
                                 return {
                                     ...prev,
-                                    activity: Activity.Stopped,
-                                    inventory: [...prev.inventory, { itemType: ItemType.carrot, quantity: 1 }],
+                                    activity: Activity.Foraging,
+                                    energy: prev.energy - 1
                                 };
-                            })
-                        }, 300);
+                            });
+                            setWorld((prev) => {
+                                const newWorld = new Map<string, Tile>(prev);
+                                const currentTile = newWorld.get(`${player.x},${player.y}`);
+
+                                if (currentTile) {
+                                    newWorld.set(`${player.x},${player.y}`, { ...currentTile, foragedToday: true });
+                                }
+
+                                return newWorld;
+                            });
+
+                            setTimeout(function () {
+                                setPlayer((prev) => {
+                                    return {
+                                        ...prev,
+                                        activity: Activity.Stopped,
+                                        inventory: [...prev.inventory, { itemType: ItemType.carrot, quantity: 1 }],
+                                    };
+                                })
+                            }, 300);
+                        } else {
+                            fullInventorySound.play();
+                        }
                     }
                     break;
             }
