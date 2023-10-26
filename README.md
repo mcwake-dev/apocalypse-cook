@@ -42,3 +42,6 @@ The following assets are licenced under [CC0](https://creativecommons.org/public
 * [Tiny Battle](https://kenney.nl/assets/tiny-battle)
 * [Tiny Town](https://kenney.nl/assets/tiny-town)
 * [Interface Sounds](https://kenney.nl/assets/interface-sounds)
+
+# License
+Licensed under [Creative Commons CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)
