@@ -2,9 +2,12 @@ import { useEffect } from 'react';
 import { useAtom } from 'jotai';
 
 import { playerAtom } from '../atoms/player';
+import { worldAtom } from '../atoms/world';
 import classes from "../styles/PlayerDisplay.module.css";
 import { Howl } from "howler";
 import { Activity } from '../types/player';
+import { Tile } from '../types/tile';
+import { ItemType } from '../types/item';
 
 const forageSound = new Howl({
     src: ["/Sounds/forage.ogg"],
@@ -12,6 +15,7 @@ const forageSound = new Howl({
 
 function PlayerDisplay() {
     const [player, setPlayer] = useAtom(playerAtom);
+    const [world, setWorld] = useAtom(worldAtom);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -39,6 +43,45 @@ function PlayerDisplay() {
                         yMod = 1;
                     }
                     break;
+                case "f":
+                    const currentTile = world.get(`${player.x},${player.y}`);
+
+                    if (
+                        currentTile?.forageable &&
+                        !currentTile?.foragedToday &&
+                        player.energy > 0 &&
+                        player.activity !== Activity.Foraging
+                    ) {
+                        forageSound.play();
+                        setPlayer((prev) => {
+                            return {
+                                ...prev,
+                                activity: Activity.Foraging,
+                                energy: prev.energy - 1
+                            };
+                        });
+                        setWorld((prev) => {
+                            const newWorld = new Map<string, Tile>(prev);
+                            const currentTile = newWorld.get(`${player.x},${player.y}`);
+
+                            if (currentTile) {
+                                newWorld.set(`${player.x},${player.y}`, { ...currentTile, foragedToday: true });
+                            }
+
+                            return newWorld;
+                        });
+
+                        setTimeout(function () {
+                            setPlayer((prev) => {
+                                return {
+                                    ...prev,
+                                    activity: Activity.Stopped,
+                                    inventory: [...prev.inventory, { itemType: ItemType.carrot, quantity: 1 }],
+                                };
+                            })
+                        }, 300);
+                    }
+                    break;
             }
 
             if (xMod !== 0 || yMod !== 0) {
@@ -60,10 +103,6 @@ function PlayerDisplay() {
                     })
                 }, 600);
             }
-        }
-
-        if (player.activity === Activity.Foraging) {
-            forageSound.play();
         }
 
         window.addEventListener("keydown", handleKeyDown);
