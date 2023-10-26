@@ -21,12 +21,13 @@ export default function ForagingDisplay() {
         const handleKeyDown = (e: KeyboardEvent) => {
             switch (e.key) {
                 case "f":
-                    if (currentTile?.forageable && !currentTile?.foragedToday) {
+                    if (currentTile?.forageable && !currentTile?.foragedToday && player.energy > 0) {
                         setPlayer((prev) => {
                             return {
                                 ...prev,
                                 inventory: [...prev.inventory, { itemType: ItemType.carrot, quantity: 1 }],
-                                activity: Activity.Foraging
+                                activity: Activity.Foraging,
+                                energy: prev.energy - 1
                             };
                         });
 
@@ -61,6 +62,13 @@ export default function ForagingDisplay() {
     });
 
     if (currentTile?.forageable) {
+        if (player.energy === 0) {
+            return (
+                <dialog ref={dialogRef} className={classes.foraging} open>
+                    You are too tired to forage
+                </dialog>
+            )
+        }
         if (currentTile?.foragedToday === true) {
             return (
                 <dialog ref={dialogRef} className={classes.foraging} open>

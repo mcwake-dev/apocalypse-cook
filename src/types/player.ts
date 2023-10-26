@@ -11,4 +11,5 @@ export type Player = {
     y: number;
     inventory: Item[];
     activity: Activity;
+    energy: number;
 }

@@ -4,6 +4,20 @@ import { createBase } from "./base";
 import { addRandomSettlements } from "./settlement";
 import { createTileOfType } from "./tile";
 
+export function restoreForageable(world: Map<string, Tile>): Map<string, Tile> {
+    const newWorld = new Map<string, Tile>();
+
+    Array.from(world.values()).map((tile) => {
+        if (tile.forageable && tile.foragedToday) {
+            tile.foragedToday = false;
+        }
+
+        newWorld.set(`${tile.x},${tile.y}`, tile);
+    });
+
+    return newWorld;
+}
+
 function createWasteland(): Map<string, Tile> {
     const newWorld: Map<string, Tile> = new Map<string, Tile>();
 
