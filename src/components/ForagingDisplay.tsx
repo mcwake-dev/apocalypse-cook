@@ -1,7 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useAtom } from "jotai";
 
-import classes from "../styles/ForagingDisplay.module.css";
 import { worldAtom } from "../atoms/world";
 import { playerAtom } from "../atoms/player";
 import { cameraAtom } from "../atoms/camera";
@@ -64,22 +63,22 @@ export default function ForagingDisplay() {
     if (currentTile?.forageable) {
         if (player.energy === 0) {
             return (
-                <dialog ref={dialogRef} className={classes.foraging} open>
+                <>
                     You are too tired to forage
-                </dialog>
+                </>
             )
         }
         if (currentTile?.foragedToday === true) {
             return (
-                <dialog ref={dialogRef} className={classes.foraging} open>
+                <>
                     You have already foraged here today
-                </dialog>
+                </>
             );
         } else {
             return (
-                <dialog ref={dialogRef} className={classes.foraging} open>
-                    Press F to forage for ingredients
-                </dialog>
+                <>
+                    Press <b>f</b> to forage for ingredients
+                </>
             );
         }
     }

@@ -1,14 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useAtom } from "jotai";
 
-import classes from "../styles/BaseDisplay.module.css";
 import { playerAtom } from "../atoms/player";
 import { baseAtom } from "../atoms/base";
 import { worldAtom } from "../atoms/world";
 import { restoreForageable } from "../procedural-generation/world";
 
 export default function BaseDisplay() {
-    const dialogRef = useRef<HTMLDialogElement>(null);
     const [player, setPlayer] = useAtom(playerAtom);
     const [, setWorld] = useAtom(worldAtom);
     const [base] = useAtom(baseAtom);
@@ -43,10 +41,10 @@ export default function BaseDisplay() {
 
     if (base.x === player.x && base.y === player.y) {
         return (
-            <dialog ref={dialogRef} className={classes.base} open>
+            <>
                 You have arrived <b>Home</b>
                 <p>Press <b>r</b> to rest</p>
-            </dialog>
+            </>
         );
     }
 
