@@ -7,6 +7,7 @@ import SettlementDisplay from './components/SettlementDisplay';
 import BaseDisplay from './components/BaseDisplay';
 import ForagingDisplay from './components/ForagingDisplay';
 import InventoryDisplay from './components/InventoryDisplay';
+import EnergyDisplay from './components/EnergyDisplay';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <BaseDisplay />
       <ForagingDisplay />
       <InventoryDisplay />
+      <EnergyDisplay />
     </div>
   )
 }
