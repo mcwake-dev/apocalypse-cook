@@ -10,7 +10,7 @@ import { restoreForageable } from "../procedural-generation/world";
 export default function BaseDisplay() {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const [player, setPlayer] = useAtom(playerAtom);
-    const [world, setWorld] = useAtom(worldAtom);
+    const [, setWorld] = useAtom(worldAtom);
     const [base] = useAtom(baseAtom);
 
     useEffect(() => {
