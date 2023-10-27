@@ -35,6 +35,7 @@ Presently this is purely a client-side application with no ability to save and n
 * [Vite](https://vitejs.dev/) - Front-end Tooling
 * [React](https://react.dev/) - Front-end Framework
 * [Jotai](https://jotai.org/) - State Management
+* [React Router](https://reactrouter.com/en/main) - Client-side Routing
 
 ## Assets Used
 ### kenney.nl
