@@ -80,7 +80,7 @@ function PlayerDisplay() {
                                     return {
                                         ...prev,
                                         activity: Activity.Stopped,
-                                        inventory: [...prev.inventory, { itemType: ItemType.carrot, quantity: 1 }],
+                                        inventory: [...prev.inventory, { itemType: ItemType.Carrot, quantity: 1 }],
                                     };
                                 })
                             }, 300);

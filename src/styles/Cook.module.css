@@ -1,0 +1,34 @@
+.recipesHeader {
+    font-size: 2rem;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.recipeList {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.recipeCard {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 5px 15px 15px 5px;
+    background: white;
+    color: black;
+    align-items: center;
+    justify-items: center;
+}
+
+.recipeCard header {
+    font-size: 1.5rem;
+}
+
+.recipeCard .ingredients header,
+.recipeCard .preparation header,
+.recipeCard .cooking header {
+    font-size: 1.2rem;
+}

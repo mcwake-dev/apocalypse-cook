@@ -1,5 +1,5 @@
 export enum ItemType {
-    carrot = "🥕",
+    Carrot = "🥕",
 }
 
 export type Item = {
